@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
+import FacebookLoginBtn from "./FacebookLoginBtn";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function Login() {
     const data = await response.json();
     console.log(data);
     if (data.token) {
-      localStorage.setItem("token", JSON.stringify(data));
+      localStorage.setItem("token", JSON.stringify({ token: data.token, user: data.user }));
       return navigate("/dashboard");
     }
     const error = document.querySelector(".error");
@@ -42,6 +43,8 @@ export default function Login() {
             <input type="password" name="password" id="password" />
           </div>
           <button>Log In</button>
+          <p className="or">or</p>
+          <FacebookLoginBtn />
           <p className="error hide">Incorrect email or password</p>
           <p>
             Don't have an account?

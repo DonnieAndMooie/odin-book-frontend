@@ -102,6 +102,27 @@ a:hover{
     color: blue;
 }
 
+.card{
+    display: flex;
+}
+
+.card-header{
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+    padding: 0;
+}
+
+.card{
+    border: none;
+}
+
+.or{
+    text-align: center;
+    font-size: 18px;
+    margin: 0;
+}
+
 @keyframes underline {
     0%{
         border-bottom: 5px solid purple;
