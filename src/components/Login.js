@@ -1,6 +1,5 @@
 import React from "react";
-import "../stylesheets/Login.css";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -44,7 +43,11 @@ export default function Login() {
           </div>
           <button>Log In</button>
           <p className="error hide">Incorrect email or password</p>
-          <p>Don't have an account? Sign Up</p>
+          <p>
+            Don't have an account?
+            {" "}
+            <Link to="/sign-up">Sign Up</Link>
+          </p>
         </form>
       </div>
     </div>

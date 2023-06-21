@@ -1,3 +1,13 @@
+@font-face {
+    font-family: "Wix";
+    src: url("./fonts//Wix_Madefor_Display/static/WixMadeforDisplay-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Oxygen";
+    src: url("./fonts/Oxygen/Oxygen-Regular.ttf");
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -13,4 +23,104 @@ body{
 
 .hide{
     display: none;
+}
+
+body{
+    background-color: rgb(0, 255, 217);
+    display: flex;
+    justify-content: center;
+    font-family: "wix", sans-serif;
+}
+
+.login-page,
+.sign-up-page{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    width: 80vw;
+}
+
+h1{
+    font-size: 72px;
+    border-bottom: 5px solid purple;
+    animation: 3s underline infinite alternate;
+}
+
+.intro{
+    font-size: 32px;
+    animation: fadein 1s ease-in;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 28px;
+    background-color: white;
+    padding: 18px;
+    border: 3px solid black;
+    font-family: "Oxygen", sans-serif;
+    margin-left: 20px;
+}
+
+input{
+    height: 28px;
+    font-size: 18px;
+    margin-left: 18px;
+}
+
+.form-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-family: ""Oxygen, sans-serif;
+}
+
+button{
+    background-color: rgb(182, 171, 171);
+    font-size: 18px;
+    padding: 6px;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+    margin-top: 12px;
+}
+
+button:hover{
+    background-color: black;
+    color: white;
+}
+
+a{
+    color: purple;
+    font-weight: bold;
+    transition: all 0.2s ease-in;
+}
+
+a:hover{
+    color: blue;
+}
+
+@keyframes underline {
+    0%{
+        border-bottom: 5px solid purple;
+    }
+    50%{
+        border-bottom: 5px solid rgb(255, 0, 255);
+        color: purple;
+    }
+    100%{
+        padding-bottom: 5px solid purple;
+    }
+}
+
+@keyframes fadein {
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
 }
