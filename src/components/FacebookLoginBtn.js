@@ -3,9 +3,7 @@ import FacebookLogin from "react-facebook-login";
 import { Card, Image } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-function FacebookLoginBtn() {
-  const navigate = useNavigate();
-
+function FacebookLoginBtn({ setLoggedIn }) {
   const responseFacebook = async (response) => {
     if (response.accessToken) {
       const user = await fetch("https://purple-surf-7233.fly.dev/facebook-login", {
@@ -17,7 +15,8 @@ function FacebookLoginBtn() {
       });
 
       const userData = await user.json();
-      localStorage.setItem("token", JSON.stringify({ token: userData.token, user: userData.user }));
+      localStorage.setItem("token", JSON.stringify({ token: userData.token, user: userData.user, timestamp: Date.now() }));
+      setLoggedIn(true);
     }
   };
 
@@ -27,7 +26,6 @@ function FacebookLoginBtn() {
         <Card.Header>
           <FacebookLogin
             appId="795775025274582"
-            autoLoad
             fields="name,email,picture"
             scope="openid"
             callback={responseFacebook}

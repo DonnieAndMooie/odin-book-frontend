@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import FacebookLoginBtn from "./FacebookLoginBtn";
 
 export default function Login() {
   const navigate = useNavigate();
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [loggedIn]);
+
   async function sumbmitHandler(e) {
     e.preventDefault();
     const email = document.getElementById("email").value;
@@ -19,7 +28,8 @@ export default function Login() {
     const data = await response.json();
     console.log(data);
     if (data.token) {
-      localStorage.setItem("token", JSON.stringify({ token: data.token, user: data.user }));
+      localStorage.setItem("token", JSON.stringify({ token: data.token, user: data.user, timestamp: Date.now() }));
+      setLoggedIn(true);
       return navigate("/dashboard");
     }
     const error = document.querySelector(".error");
@@ -44,7 +54,7 @@ export default function Login() {
           </div>
           <button>Log In</button>
           <p className="or">or</p>
-          <FacebookLoginBtn />
+          <FacebookLoginBtn setLoggedIn={setLoggedIn} />
           <p className="error hide">Incorrect email or password</p>
           <p>
             Don't have an account?
