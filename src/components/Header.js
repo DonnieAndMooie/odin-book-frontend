@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate();
   useEffect(() => {
     const options = document.querySelectorAll(".option");
     const user = document.querySelector(".user");
@@ -16,7 +18,15 @@ export default function Header() {
     });
   }, []);
 
-  const profilePic = JSON.parse(localStorage.getItem("token")).user.picture;
+  function logout() {
+    localStorage.clear();
+    navigate("/login");
+  }
+
+  let profilePic;
+  if (localStorage.getItem("token")) {
+    profilePic = JSON.parse(localStorage.getItem("token")).user.picture;
+  }
 
   return (
     <header>
@@ -25,7 +35,7 @@ export default function Header() {
         {profilePic && <img src={profilePic} alt="user pic" className="user-pic" />}
         <div className="option hide">View Profile</div>
         <div className="option hide">View Friends</div>
-        <div className="option hide">Log Out</div>
+        <div className="option hide" onClick={logout}>Log Out</div>
       </div>
     </header>
   );

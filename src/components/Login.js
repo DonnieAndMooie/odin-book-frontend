@@ -26,7 +26,6 @@ export default function Login() {
       }),
     });
     const data = await response.json();
-    console.log(data);
     if (data.token) {
       localStorage.setItem("token", JSON.stringify({ token: data.token, user: data.user, timestamp: Date.now() }));
       setLoggedIn(true);
