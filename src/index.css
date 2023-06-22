@@ -8,6 +8,10 @@
     src: url("./fonts/Oxygen/Oxygen-Regular.ttf");
 }
 
+*{
+    box-sizing: border-box;
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -171,6 +175,62 @@ img::selection,
     background-color: black;
     color: white;
 }
+
+.post{
+    background-color: white;
+    padding: 10px 24px;
+    width: 80%;
+    margin-top: 24px;
+}
+
+.post-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-user{
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    font-size: 24px;
+}
+
+.post-user img{
+    height: 72px;
+    border-radius: 48px;
+}
+
+.post-footer{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.footer-item{
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 22px;
+    border-right: 2px solid grey;
+    border-left: 2px solid grey;
+    padding: 0 18px;
+}
+
+.footer-item:hover{
+    background-color: rgb(225, 225, 225);
+}
+
+.post-footer img{
+    height: 32px;
+    cursor: pointer;
+}
+
+.content{
+    font-size: 32px;
+    margin-top: 12px;
+    font-family: "Oxygen";
+}
+
 
 @keyframes underline {
     0%{
