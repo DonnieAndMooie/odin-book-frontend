@@ -56,7 +56,8 @@ h1{
     animation: fadein 1s ease-in;
 }
 
-form{
+.login form,
+.sign-up form{
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -181,6 +182,8 @@ img::selection,
     padding: 10px 24px;
     width: 80%;
     margin-top: 24px;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
 }
 
 .post-header{
@@ -229,8 +232,37 @@ img::selection,
     font-size: 32px;
     margin-top: 12px;
     font-family: "Oxygen";
+    border-bottom: 1px solid rgb(210, 210, 210);
 }
 
+
+.post-form{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+}
+
+.post-form input{
+    height: 64px;
+    width: 100%;
+    font-family: "Oxygen";
+}
+
+.post-form-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+.post-btn{
+    background-color: blue;
+    color: white;
+    border:  none;
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-size: 24px;
+}
 
 @keyframes underline {
     0%{

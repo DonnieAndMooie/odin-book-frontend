@@ -4,24 +4,7 @@ import Unliked from "../images/unliked.png";
 import Comment from "../images/comment.png";
 import Share from "../images/share.png";
 
-export default function Feed() {
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    async function fetchPosts() {
-      const { token } = JSON.parse(localStorage.getItem("token"));
-      const response = await fetch("https://purple-surf-7233.fly.dev/posts", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await response.json();
-      setPosts(data);
-      console.log(data);
-    }
-    fetchPosts();
-  }, []);
+export default function Feed({ posts }) {
   return (
     <div>
       {posts.map((post, i) => (
