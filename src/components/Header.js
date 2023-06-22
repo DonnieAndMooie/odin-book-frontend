@@ -28,12 +28,13 @@ export default function Header() {
     profilePic = JSON.parse(localStorage.getItem("token")).user.picture;
   }
 
+  const userId = JSON.parse(localStorage.getItem("token")).user._id;
   return (
     <header>
-      <h2>OdinBook</h2>
+      <h2 onClick={() => navigate("/dashboard")}>OdinBook</h2>
       <div className="user">
         {profilePic && <img src={profilePic} alt="user pic" className="user-pic" />}
-        <div className="option hide">View Profile</div>
+        <div className="option hide" onClick={() => navigate(`/${userId}`)}>View Profile</div>
         <div className="option hide">View Friends</div>
         <div className="option hide" onClick={logout}>Log Out</div>
       </div>

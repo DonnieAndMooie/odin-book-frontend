@@ -4,7 +4,7 @@ import Header from "./Header";
 import Feed from "./Feed";
 import PostForm from "./PostForm";
 
-export default function Dashboard() {
+export default function Dashboard({ setAllUsers }) {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   useEffect(() => {
@@ -22,6 +22,23 @@ export default function Dashboard() {
     }
     fetchPosts();
   }, []);
+
+  useEffect(() => {
+    const { token } = JSON.parse(localStorage.getItem("token"));
+    async function fetchUsers() {
+      const response = await fetch("https://purple-surf-7233.fly.dev/users", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      setAllUsers(data);
+    }
+    fetchUsers();
+  }, []);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {

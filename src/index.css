@@ -140,6 +140,11 @@ header{
 
 header h2{
     margin-top: 20px;
+    cursor: pointer;
+}
+
+header h2:hover{
+    color: blue;
 }
 
 h2::selection,
@@ -197,6 +202,7 @@ img::selection,
     gap: 24px;
     align-items: center;
     font-size: 24px;
+    cursor: pointer;
 }
 
 .post-user img{
@@ -221,11 +227,11 @@ img::selection,
 
 .footer-item:hover{
     background-color: rgb(225, 225, 225);
+    cursor: pointer;
 }
 
 .post-footer img{
     height: 32px;
-    cursor: pointer;
 }
 
 .content{
@@ -246,6 +252,9 @@ img::selection,
     height: 64px;
     width: 100%;
     font-family: "Oxygen";
+    border-radius: 8px;
+    overflow: auto;
+    padding-left: 10px;
 }
 
 .post-form-div{
@@ -262,6 +271,10 @@ img::selection,
     padding: 10px 24px;
     border-radius: 12px;
     font-size: 24px;
+}
+
+.post-user:hover{
+    color: blue;
 }
 
 @keyframes underline {
