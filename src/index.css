@@ -367,6 +367,42 @@ img::selection,
     margin-top: 18px;
 }
 
+.user-item{
+    display: flex;
+    margin-top: 18px;
+    align-items: center;
+    gap: 18px;
+    background-color: white;
+    padding: 10px 18px;
+    border-radius: 12px;
+}
+
+.user-item h2{
+    font-size: 20px;
+}
+
+.user-item img{
+    height: 72px;
+    border-radius: 48px;
+}
+
+.user-item:hover{
+    background-color: rgb(182, 171, 171);
+    color: blue;
+    cursor: pointer;
+}
+
+.user-item button{
+    margin: 0;
+    margin-left: auto;
+    background-color: yellow;
+    border-radius: 12px;
+}
+
+.user-item button:hover{
+    background-color: rgb(255, 119, 0);
+}
+
 @keyframes underline {
     0%{
         border-bottom: 5px solid purple;
