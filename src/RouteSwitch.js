@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import SignUp from "./components/SignUp";
 import UserPage from "./components/UserPage";
+import AllUsers from "./components/AllUsers";
 
 export default function RouteSwitch() {
   const [allUsers, setAllUsers] = useState([]);
@@ -19,6 +20,7 @@ export default function RouteSwitch() {
         {allUsers.map((user) => (
           <Route key={user._id} path={`/${user._id}`} element={<UserPage user={user} />} />
         ))}
+        <Route path="/users" element={<AllUsers />} />
       </Routes>
     </BrowserRouter>
   );

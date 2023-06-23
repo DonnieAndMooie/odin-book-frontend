@@ -35,7 +35,7 @@ export default function Header() {
       <div className="user">
         {profilePic && <img src={profilePic} alt="user pic" className="user-pic" />}
         <div className="option hide" onClick={() => navigate(`/${userId}`)}>View Profile</div>
-        <div className="option hide">View Users</div>
+        <div className="option hide" onClick={() => navigate("/users")}>View Users</div>
         <div className="option hide" onClick={logout}>Log Out</div>
       </div>
     </header>
