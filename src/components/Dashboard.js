@@ -20,12 +20,14 @@ export default function Dashboard({ setAllUsers }) {
       const data = await response.json();
       setPosts(data);
     }
-    fetchPosts();
+    if (localStorage.getItem("token")) {
+      fetchPosts();
+    }
   }, []);
 
   useEffect(() => {
-    const { token } = JSON.parse(localStorage.getItem("token"));
     async function fetchUsers() {
+      const { token } = JSON.parse(localStorage.getItem("token"));
       const response = await fetch("https://purple-surf-7233.fly.dev/users", {
         method: "GET",
         headers: {
@@ -36,7 +38,9 @@ export default function Dashboard({ setAllUsers }) {
       const data = await response.json();
       setAllUsers(data);
     }
-    fetchUsers();
+    if (localStorage.getItem("token")) {
+      fetchUsers();
+    }
   }, []);
 
   useEffect(() => {

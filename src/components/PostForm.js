@@ -22,7 +22,11 @@ export default function PostForm({ setPosts, posts }) {
     document.querySelector("input").value = "";
   }
 
-  const profilePic = JSON.parse(localStorage.getItem("token")).user.picture;
+  let profilePic;
+  if (localStorage.getItem("token")) {
+    profilePic = JSON.parse(localStorage.getItem("token")).user.picture;
+  }
+
   return (
     <div className="post-form-div">
       <form onSubmit={(e) => submitHandler(e)} id="post-form" className="post-form">

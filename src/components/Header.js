@@ -24,11 +24,11 @@ export default function Header() {
   }
 
   let profilePic;
+  let userId;
   if (localStorage.getItem("token")) {
     profilePic = JSON.parse(localStorage.getItem("token")).user.picture;
+    userId = JSON.parse(localStorage.getItem("token")).user._id;
   }
-
-  const userId = JSON.parse(localStorage.getItem("token")).user._id;
   return (
     <header>
       <h2 onClick={() => navigate("/dashboard")}>OdinBook</h2>

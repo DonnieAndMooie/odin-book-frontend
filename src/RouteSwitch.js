@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter, Routes, Route, Navigate,
 } from "react-router-dom";
+import moment from "moment";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import SignUp from "./components/SignUp";
@@ -10,6 +11,19 @@ import AllUsers from "./components/AllUsers";
 
 export default function RouteSwitch() {
   const [allUsers, setAllUsers] = useState([]);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      const { token } = JSON.parse(localStorage.getItem("token"));
+      const object = JSON.parse(token);
+      const timestamp = moment(object.timestamp);
+      const currentTime = moment(new Date());
+      const difference = currentTime.diff(timestamp, "hours");
+      if (difference >= 24) {
+        localStorage.clear();
+      }
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -21,6 +35,7 @@ export default function RouteSwitch() {
           <Route key={user._id} path={`/${user._id}`} element={<UserPage user={user} />} />
         ))}
         <Route path="/users" element={<AllUsers />} />
+        <Route path="*" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
