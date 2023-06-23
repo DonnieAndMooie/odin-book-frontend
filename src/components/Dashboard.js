@@ -48,6 +48,7 @@ export default function Dashboard({ setAllUsers }) {
   return (
     <div>
       <Header />
+      <div className="header-gap" />
       <PostForm setPosts={setPosts} posts={posts} />
       <Feed posts={posts} />
     </div>

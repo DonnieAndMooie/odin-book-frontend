@@ -15,6 +15,7 @@
 body{
     margin: 0;
     padding: 0;
+    padding-bottom: 18px;
 }
 
 .error{
@@ -136,6 +137,19 @@ header{
     height: 100px;
     margin-top: 32px;
     border-bottom: 3px solid white;
+    position: sticky;
+    top: 0;
+    background-color: rgb(0, 255, 217);
+    padding-top: 8px;
+    z-index: 10;
+}
+
+.header-gap{
+    height: 18px;
+    position: sticky;
+    top: 100px;
+    background-color: rgb(0, 255, 217);
+    z-index: 5
 }
 
 header h2{
@@ -159,6 +173,7 @@ img::selection,
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 10
 }
 
 .user-pic{
@@ -275,6 +290,81 @@ img::selection,
 
 .post-user:hover{
     color: blue;
+}
+
+.user-page-header{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 48px 1fr;
+    margin-top: 18px;
+    padding-bottom: 18px;
+    border-bottom: 3px solid white;
+}
+
+.user-page-header img{
+    grid-column: 1;
+    grid-row: 1 / 3;
+    border: 3px solid black;
+    margin-right: 24px;
+    height: 240px;
+}
+
+.user-page-header h2{
+    font-size: 48px;
+}
+
+.bio{
+    margin-top: 24px;
+    font-size: 24px;
+}
+
+.bio button{
+    margin-left: 24px;
+    background-color: blue;
+    color: white;
+}
+
+.bio button:hover{
+    background-color: black;
+}
+
+.bio textarea{
+    margin-top: 12px;
+    width: 100%;
+    height: 128px;
+    font-size: 18px;
+}
+
+.bio .confirm-edit-bio{
+    margin-left: 0;
+}
+
+.bio-top{
+    display: flex;
+    align-items: center;
+}
+
+.bio-top button{
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.user-page-bottom{
+    display: flex;
+    justify-content: flex-start;
+    gap: 20%;
+}
+
+.user-page-bottom .posts{
+    width: 100%;
+}
+
+.user-page-bottom .friends{
+    background-color: yellow;
+    border-radius: 18px;
+    height: 380px;
+    padding: 20px;
+    margin-top: 18px;
 }
 
 @keyframes underline {
