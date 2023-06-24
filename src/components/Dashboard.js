@@ -50,7 +50,7 @@ export default function Dashboard({ setAllUsers }) {
     }
   }, []);
   return (
-    <div>
+    <div className="dashboard">
       <Header />
       <div className="header-gap" />
       <PostForm setPosts={setPosts} posts={posts} />

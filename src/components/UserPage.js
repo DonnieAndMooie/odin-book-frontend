@@ -51,6 +51,7 @@ export default function UserPage({ user }) {
   return (
     <div className="user-page">
       <Header />
+      <div className="header-gap" />
       <div className="user-page-header">
         <img src={user.picture} alt="Profile Pic" />
         <h2>{user.name}</h2>

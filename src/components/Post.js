@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import Unliked from "../images/unliked.png";
@@ -7,6 +7,24 @@ import Share from "../images/share.png";
 
 export default function Post({ post }) {
   const navigate = useNavigate();
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    async function fetchComments() {
+      const { token } = JSON.parse(localStorage.getItem("token"));
+      const response = await fetch(`https://purple-surf-7233.fly.dev/posts/${post._id}/comments`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      setComments(data);
+    }
+    fetchComments();
+  }, []);
+
   return (
     <div className="post" key={post._id}>
       <div className="post-header">
@@ -24,7 +42,7 @@ export default function Post({ post }) {
           <p>Like</p>
         </div>
         <div className="footer-item">
-          <p>{post.comments ? post.comments.length : "0"}</p>
+          <p>{comments.length}</p>
           <img src={Comment} alt="Comment" />
           <p>Comment</p>
         </div>
