@@ -333,16 +333,6 @@ img::selection,
     font-size: 24px;
 }
 
-.bio button{
-    margin-left: 24px;
-    background-color: blue;
-    color: white;
-}
-
-.bio button:hover{
-    background-color: black;
-}
-
 .bio textarea{
     margin-top: 12px;
     width: 100%;
@@ -359,10 +349,6 @@ img::selection,
     align-items: center;
 }
 
-.bio-top button{
-    margin-top: 0;
-    margin-bottom: 10px;
-}
 
 .user-page-bottom{
     display: flex;
@@ -408,38 +394,45 @@ img::selection,
     cursor: pointer;
 }
 
-.user-item button{
+.user-item button,
+.user-page-header button{
     margin: 0;
     margin-left: auto;
     background-color: yellow;
     border-radius: 12px;
 }
 
-.user-item button:hover{
+.user-item button:hover,
+.user-page-header button:hover{
     background-color: rgb(255, 119, 0);
 }
 
-.user-item .request-sent{
+.user-item .request-sent,
+.user-page-header .request-sent{
     background-color: orange;
 }
 
-.user-item .request-sent:hover{
+.user-item .request-sent:hover,
+.user-page-header .request-sent:hover{
     background-color: orangered;
 }
 
-.user-item .friends{
+.user-item .friends,
+.user-page-header .friends{
     background-color: green;
 }
 
-.user-item .friends:hover{
+.user-item .friends:hover,
+.user-page-header .friends:hover{
     background-color: rgb(0, 66, 0);
 }
 
-.user-item .accept-request{
+.user-item .accept-request,
+.user-page-header .accept-request{
     background-color: skyblue;
 }
-
-.user-item .accept-request:hover{
+.accept-request:hover,
+.user-page-header .accept-request:hover{
     background-color: rgb(47, 115, 142);
 }
 
@@ -503,6 +496,33 @@ img::selection,
 
 .notification .reject-request:hover{
     background-color: rgb(136, 2, 2);
+}
+
+.user-page-header button{
+    width: 350px;
+    height: 80px;
+    margin-right:  auto;
+    margin-left: 0;
+    margin-top: 18px;
+}
+
+.bio button{
+    margin-left: 24px;
+    background-color: blue;
+    color: white;
+    width: 300px;
+    height: 64px;
+}
+
+.bio button:hover{
+    background-color: black;
+}
+
+.bio-top button{
+    margin-top: 0;
+    margin-bottom: 10px;
+    width: 120px;
+    height: 64px;
 }
 
 @keyframes underline {

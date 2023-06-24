@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Post from "./Post";
+import FriendButton from "./FriendButton";
 
 export default function UserPage({ user }) {
   const [posts, setPosts] = useState([]);
@@ -55,6 +56,8 @@ export default function UserPage({ user }) {
       <div className="user-page-header">
         <img src={user.picture} alt="Profile Pic" />
         <h2>{user.name}</h2>
+        {user._id !== JSON.parse(localStorage.getItem("token")).user._id
+          && <FriendButton user={user} />}
         <div className="bio">
           <div className="bio-top">
             <p className="bio-text">{user.bio}</p>
