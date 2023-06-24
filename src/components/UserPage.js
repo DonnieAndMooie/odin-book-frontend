@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Post from "./Post";
 import FriendButton from "./FriendButton";
+import Friend from "./Friend";
 
 export default function UserPage({ user }) {
   const [posts, setPosts] = useState([]);
+  const [friends, setFriends] = useState(user.friends);
   useEffect(() => {
     const { token } = JSON.parse(localStorage.getItem("token"));
     async function fetchPosts() {
@@ -20,9 +22,10 @@ export default function UserPage({ user }) {
         post.author._id === user._id
       ));
       setPosts(filteredPosts);
+      setFriends(user.friends);
     }
     fetchPosts();
-  }, []);
+  }, [user]);
 
   function toggleTextarea() {
     const textarea = document.getElementById("bio");
@@ -73,7 +76,8 @@ export default function UserPage({ user }) {
           {posts.map((post) => <Post post={post} key={post._id} />)}
         </div>
         <div className="friends">
-          friends
+          <h2>Friends</h2>
+          {friends.map((friend) => <Friend friendID={friend} key={friend} />)}
         </div>
       </div>
     </div>
