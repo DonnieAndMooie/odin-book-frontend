@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Notification from "../images/notifications.png";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -32,6 +33,11 @@ export default function Header() {
   return (
     <header>
       <h2 onClick={() => navigate("/dashboard")}>OdinBook</h2>
+      <div className="notifications" onClick={() => navigate("/notifications")}>
+        <img className="notifications" src={Notification} alt="Notifications" />
+        <p>{JSON.parse(localStorage.getItem("token")).user.requests_received.length}</p>
+      </div>
+
       <div className="user">
         {profilePic && <img src={profilePic} alt="user pic" className="user-pic" />}
         <div className="option hide" onClick={() => navigate(`/${userId}`)}>View Profile</div>
