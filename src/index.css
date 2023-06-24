@@ -419,6 +419,30 @@ img::selection,
     background-color: rgb(255, 119, 0);
 }
 
+.user-item .request-sent{
+    background-color: orange;
+}
+
+.user-item .request-sent:hover{
+    background-color: orangered;
+}
+
+.user-item .friends{
+    background-color: green;
+}
+
+.user-item .friends:hover{
+    background-color: rgb(0, 66, 0);
+}
+
+.user-item .accept-request{
+    background-color: skyblue;
+}
+
+.user-item .accept-request:hover{
+    background-color: rgb(47, 115, 142);
+}
+
 @keyframes underline {
     0%{
         border-bottom: 5px solid purple;

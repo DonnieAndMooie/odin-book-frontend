@@ -58,7 +58,7 @@ export default function UserPage({ user }) {
         <div className="bio">
           <div className="bio-top">
             <p className="bio-text">{user.bio}</p>
-            {JSON.parse(localStorage.getItem("token")).user._id === user._id
+            {localStorage.getItem("token") && JSON.parse(localStorage.getItem("token")).user._id === user._id
             && <button onClick={toggleTextarea} className="edit-bio">Edit Bio</button>}
           </div>
           <textarea className="hide" name="bio" id="bio" />
@@ -67,7 +67,7 @@ export default function UserPage({ user }) {
       </div>
       <div className="user-page-bottom">
         <div className="posts">
-          {posts.map((post) => <Post post={post} />)}
+          {posts.map((post) => <Post post={post} key={post._id} />)}
         </div>
         <div className="friends">
           friends
