@@ -463,6 +463,48 @@ img::selection,
     font-size: 22px;
 }
 
+.notification{
+    background-color: white;
+    display: flex;
+    padding: 10px 24px;
+    align-items: center;
+    border-radius: 12px;
+    margin-top: 18px;
+}
+
+.notification img{
+    height: 64px;
+    border-radius: 32px;
+    margin-right: 18px;
+    cursor: pointer;
+}
+
+.notification .accept-request{
+    margin: 0;
+    margin-left: auto;
+    margin-right: 18px;
+    background-color: green;
+    color: white;
+}
+
+.notification button:hover{
+    background-color: greenyellow;
+}
+
+.notifications-page h2{
+    margin-top: 24px;
+}
+
+.notification .reject-request{
+    background-color: red;
+    color: white;
+    margin: 0;
+}
+
+.notification .reject-request:hover{
+    background-color: rgb(136, 2, 2);
+}
+
 @keyframes underline {
     0%{
         border-bottom: 5px solid purple;

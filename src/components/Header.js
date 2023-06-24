@@ -35,7 +35,9 @@ export default function Header() {
       <h2 onClick={() => navigate("/dashboard")}>OdinBook</h2>
       <div className="notifications" onClick={() => navigate("/notifications")}>
         <img className="notifications" src={Notification} alt="Notifications" />
-        <p>{JSON.parse(localStorage.getItem("token")).user.requests_received.length}</p>
+        {JSON.parse(localStorage.getItem("token")).user.requests_received.length > 0
+          && <p>{JSON.parse(localStorage.getItem("token")).user.requests_received.length}</p>}
+
       </div>
 
       <div className="user">
