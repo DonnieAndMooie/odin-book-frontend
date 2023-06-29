@@ -603,6 +603,10 @@ img::selection,
     color: black;
 }
 
+.comments{
+    margin-top: 18px;
+}
+
 @keyframes underline {
     0%{
         border-bottom: 5px solid purple;

@@ -5,11 +5,23 @@ import Unliked from "../images/unliked.png";
 import CommentImg from "../images/comment.png";
 import Share from "../images/share.png";
 import Comment from "./Comment";
+import Liked from "../images/liked.png";
 
 export default function Post({ post }) {
   const navigate = useNavigate();
   const [likes, setLikes] = useState(post.likes.length);
   const [comments, setComments] = useState([]);
+  const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      if (post.likes.includes(JSON.parse(localStorage.getItem("token")).user._id.toString())) {
+        setIsLiked(true);
+      } else {
+        setIsLiked(false);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     async function fetchComments() {
@@ -28,8 +40,15 @@ export default function Post({ post }) {
   }, []);
 
   function showComments(e) {
-    const comments = e.target.parentNode.parentNode.parentNode.childNodes[3];
-    comments.classList.toggle("hide");
+    let comments;
+    if (e.target.nodeName === "DIV") {
+      comments = e.target.parentNode.parentNode.childNodes[3];
+    } else {
+      comments = e.target.parentNode.parentNode.parentNode.childNodes[3];
+    }
+    if (Array.from(comments.childNodes).length > 0) {
+      comments.classList.toggle("hide");
+    }
   }
 
   async function likePost() {
@@ -50,6 +69,7 @@ export default function Post({ post }) {
       const data = await response.json();
       post.likes = filteredLikes;
       setLikes(post.likes.length);
+      setIsLiked(false);
     } else {
       const response = await fetch(`https://purple-surf-7233.fly.dev/posts/${post._id}`, {
         method: "PUT",
@@ -64,6 +84,7 @@ export default function Post({ post }) {
       const data = await response.json();
       post.likes.push(userID);
       setLikes(post.likes.length);
+      setIsLiked(true);
     }
   }
 
@@ -80,7 +101,8 @@ export default function Post({ post }) {
       <div className="post-footer">
         <div className="footer-item" onClick={likePost}>
           <p className="likes-count">{likes}</p>
-          <img src={Unliked} alt="Unliked" />
+          {!isLiked && <img src={Unliked} alt="Unliked" />}
+          {isLiked && <img src={Liked} alt="Liked" />}
           <p>Like</p>
         </div>
         <div className="footer-item" onClick={(e) => showComments(e)}>
@@ -94,6 +116,7 @@ export default function Post({ post }) {
         </div>
       </div>
       <div className="comments hide">
+        <h3>Comments</h3>
         {comments.map((comment) => (
           <Comment key={comment._id} comment={comment} />
         ))}
