@@ -364,7 +364,7 @@ img::selection,
 .user-page-bottom .friends{
     background-color: yellow;
     border-radius: 18px;
-    height: 380px;
+    height: fit-content;
     padding: 20px;
     margin-top: 18px;
     width: 500px;
@@ -617,6 +617,7 @@ img::selection,
     padding: 18px;
     margin-right: 12px;
     width: 80%;
+    font-family: "Origin", sans-serif;
 }
 
 .comment-form button{
