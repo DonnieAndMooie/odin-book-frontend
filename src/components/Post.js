@@ -6,6 +6,7 @@ import CommentImg from "../images/comment.png";
 import Share from "../images/share.png";
 import Comment from "./Comment";
 import Liked from "../images/liked.png";
+import CommentForm from "./CommentForm";
 
 export default function Post({ post }) {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ export default function Post({ post }) {
     } else {
       comments = e.target.parentNode.parentNode.parentNode.childNodes[3];
     }
-    if (Array.from(comments.childNodes).length > 0) {
+    if (Array.from(comments.childNodes).length > 1) {
       comments.classList.toggle("hide");
     }
   }
@@ -117,6 +118,7 @@ export default function Post({ post }) {
       </div>
       <div className="comments hide">
         <h3>Comments</h3>
+        <CommentForm postId={post._id} setComments={setComments} comments={comments} />
         {comments.map((comment) => (
           <Comment key={comment._id} comment={comment} />
         ))}

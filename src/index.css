@@ -607,6 +607,28 @@ img::selection,
     margin-top: 18px;
 }
 
+.comment-form{
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.comment-form input{
+    padding: 18px;
+    margin-right: 12px;
+    width: 80%;
+}
+
+.comment-form button{
+    background-color: blue;
+    color: white;
+    margin: 0;
+}
+
+.comment-form button:hover{
+    background-color: rgb(168, 168, 255);
+}
+
 @keyframes underline {
     0%{
         border-bottom: 5px solid purple;
