@@ -546,6 +546,63 @@ img::selection,
     
 }
 
+.comment{
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid grey;
+    padding: 5px;
+    font-family: "Oxygen", sans-serif;
+}
+
+.comment-header{
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    cursor: pointer;
+    font-family: "Wix", sans-serif;
+    justify-content: space-between;
+}
+
+.comment-user{
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.comment-footer{
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 18px;
+    font-family: "Wix", sans-serif;
+}
+
+.comment-footer .footer-item{
+    font-size: 18px;
+}
+
+.comment-footer img{
+    height: 24px;
+}
+
+.comment-header img{
+    height: 48px;
+    border-radius: 24px;
+}
+
+.comment-header:hover{
+    color: blue;
+}
+
+.comment-date{
+    margin-left: auto;
+}
+
+.comment-header:hover .comment-date{
+    cursor: auto;
+    color: black;
+}
+
 @keyframes underline {
     0%{
         border-bottom: 5px solid purple;

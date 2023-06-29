@@ -14,8 +14,7 @@ export default function RouteSwitch() {
   const [allUsers, setAllUsers] = useState([]);
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      const { token } = JSON.parse(localStorage.getItem("token"));
-      const timestamp = moment(token.timestamp);
+      const { timestamp } = JSON.parse(localStorage.getItem("token"));
       const currentTime = moment(new Date());
       const difference = currentTime.diff(timestamp, "hours");
       if (difference >= 24) {
