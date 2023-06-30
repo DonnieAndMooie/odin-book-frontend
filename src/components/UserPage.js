@@ -3,9 +3,10 @@ import Header from "./Header";
 import Post from "./Post";
 import FriendButton from "./FriendButton";
 import Friend from "./Friend";
+import Loading from "../images/Spinner-1s-200px.gif";
 
 export default function UserPage({ user }) {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(null);
   const [friends, setFriends] = useState(user.friends);
   useEffect(() => {
     const { token } = JSON.parse(localStorage.getItem("token"));
@@ -52,6 +53,15 @@ export default function UserPage({ user }) {
     toggleTextarea();
   }
 
+  if (posts === null) {
+    return (
+      <div className="loading-div">
+        <Header />
+        <img src={Loading} alt="Loading" className="loading" />
+      </div>
+
+    );
+  }
   return (
     <div className="user-page">
       <Header />

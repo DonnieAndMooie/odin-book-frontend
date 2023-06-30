@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import User from "./User";
+import Loading from "../images/Spinner-1s-200px.gif";
 
 export default function AllUsers() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(null);
   useEffect(() => {
     async function fetchUsers() {
       const currentUserID = JSON.parse(localStorage.getItem("token")).user._id;
@@ -23,6 +24,16 @@ export default function AllUsers() {
       fetchUsers();
     }
   }, []);
+
+  if (users === null) {
+    return (
+      <div className="loading-div">
+        <Header />
+        <img src={Loading} alt="Loading" className="loading" />
+      </div>
+
+    );
+  }
   return (
     <div>
       <Header />
