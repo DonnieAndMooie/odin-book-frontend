@@ -4,7 +4,7 @@ import Post from "./Post";
 import Loading from "../images/Spinner-1s-200px.gif";
 
 export default function Feed({ posts, otherPosts }) {
-  if (posts.length === 0) {
+  if (otherPosts.length === 0) {
     return (
       <img src={Loading} alt="Loading" className="loading" />
     );

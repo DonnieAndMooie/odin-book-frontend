@@ -191,6 +191,7 @@ img::selection,
 .user-pic{
     border-radius: 48px;
     height: 72px;
+    width: 72px;
     border: 3px solid black;
 }
 
@@ -390,6 +391,7 @@ img::selection,
 
 .user-item img{
     height: 72px;
+    width: 72px;
     border-radius: 48px;
 }
 
@@ -685,6 +687,15 @@ img::selection,
     margin: 0;
 }
 
+.guest-login{
+    background-color: orange;
+}
+
+.guest-login:hover{
+    background-color: yellow;
+    color: black;
+}
+
 @keyframes underline {
     0%{
         border-bottom: 5px solid purple;
@@ -705,5 +716,11 @@ img::selection,
 
     100%{
         opacity: 1;
+    }
+}
+
+@media (max-width: 1100px){
+    h1{
+        font-size: 64px;
     }
 }

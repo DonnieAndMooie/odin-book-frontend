@@ -13,7 +13,7 @@ export default function Login() {
     }
   }, [loggedIn]);
 
-  async function sumbmitHandler(e) {
+  async function submitHandler(e) {
     e.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -35,6 +35,13 @@ export default function Login() {
     error.classList.remove("hide");
   }
 
+  async function guestLogin() {
+    document.getElementById("email").value = "guest@email.com";
+    document.getElementById("password").value = "guestPassword";
+    const loginBtn = document.querySelector(".login-btn");
+    loginBtn.click();
+  }
+
   return (
     <div className="login-page">
       <div className="left">
@@ -42,7 +49,7 @@ export default function Login() {
         <p className="intro"><strong>The best place to connect with friends</strong></p>
       </div>
       <div className="login">
-        <form onSubmit={(e) => sumbmitHandler(e)}>
+        <form onSubmit={(e) => submitHandler(e)}>
           <div className="form-item">
             <label htmlFor="email">Email:</label>
             <input type="email" id="email" name="email" />
@@ -51,10 +58,11 @@ export default function Login() {
             <label htmlFor="password">Password:</label>
             <input type="password" name="password" id="password" />
           </div>
-          <button>Log In</button>
-          <p className="or">or</p>
-          <FacebookLoginBtn setLoggedIn={setLoggedIn} />
+          <button className="login-btn">Log In</button>
           <p className="error hide">Incorrect email or password</p>
+          <p className="or">or</p>
+          <button className="guest-login" type="button" onClick={guestLogin}>Log In As A Guest</button>
+          <FacebookLoginBtn setLoggedIn={setLoggedIn} />
           <p>
             Don't have an account?
             {" "}
