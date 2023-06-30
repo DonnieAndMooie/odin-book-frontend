@@ -4,10 +4,14 @@ import Post from "./Post";
 import FriendButton from "./FriendButton";
 import Friend from "./Friend";
 import Loading from "../images/Spinner-1s-200px.gif";
+import Upload from "../images/upload.png";
 
 export default function UserPage({ user }) {
   const [posts, setPosts] = useState(null);
   const [friends, setFriends] = useState(user.friends);
+  const [pictureAddress, setPictureAddress] = useState("No picture selected");
+  const [image, setImage] = useState(null);
+
   useEffect(() => {
     const { token } = JSON.parse(localStorage.getItem("token"));
     async function fetchPosts() {
@@ -62,6 +66,50 @@ export default function UserPage({ user }) {
 
     );
   }
+
+  function changeHandler(e) {
+    setImage(e.target.files[0]);
+    setPictureAddress(e.target.value);
+  }
+
+  async function uploadImage() {
+    try {
+      const data = new FormData();
+      data.append("file", image);
+      data.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET),
+      data.append("cloud_name", process.env.REACT_APP_CLOUD_NAME);
+      const response = await fetch(process.env.REACT_APP_CLOUDINARY_URL, {
+        method: "POST",
+        body: data,
+      });
+      const img = await response.json();
+      document.getElementById("file").value = "";
+      setPictureAddress("No file uploaded");
+      setImage(null);
+      return img.url;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function profilePicChange() {
+    const url = await uploadImage();
+    const userID = JSON.parse(localStorage.getItem("token")).user._id;
+    const { token } = JSON.parse(localStorage.getItem("token"));
+    const response = await fetch(`https://purple-surf-7233.fly.dev/users/${userID}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        picture: url,
+      }),
+    });
+    const data = await response.json();
+    window.location.reload(false);
+  }
+
   return (
     <div className="user-page">
       <Header />
@@ -79,6 +127,19 @@ export default function UserPage({ user }) {
           </div>
           <textarea className="hide" name="bio" id="bio" />
           <button onClick={submitBio} className="confirm-edit-bio hide">Confirm Changes</button>
+          {localStorage.getItem("token") && JSON.parse(localStorage.getItem("token")).user._id === user._id && (
+            <div>
+              <label htmlFor="file" className="file-upload">
+                Change Profile Picture:
+                <img className="upload" src={Upload} alt="Upload" accept="image/jpeg, image/png, image/jpg" />
+              </label>
+              <p className="file-location">{pictureAddress}</p>
+              <input type="file" id="file" className="hide" name="picture" onChange={(e) => changeHandler(e)} />
+              {image !== null && <button onClick={profilePicChange} className="confirm-profile-pic">Confirm</button>}
+            </div>
+
+          )}
+
         </div>
       </div>
       <div className="user-page-bottom">

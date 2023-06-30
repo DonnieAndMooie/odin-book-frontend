@@ -239,6 +239,7 @@ img::selection,
 
 .post-user img{
     height: 72px;
+    width: 72px;
     border-radius: 48px;
 }
 
@@ -666,6 +667,22 @@ img::selection,
 .post-img{
     height: 220px;
     margin-bottom: 18px;
+}
+
+.file-location{
+    font-size: 18px;
+    font-family: "Oxygen";
+}
+
+.user-page-header .upload{
+    border: none;
+}
+
+.user-page-header .confirm-profile-pic{
+    height: 48px;
+    max-width: 180px;
+    padding: 0px;
+    margin: 0;
 }
 
 @keyframes underline {
