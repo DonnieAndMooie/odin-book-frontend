@@ -651,6 +651,23 @@ img::selection,
     margin: 0;
 }
 
+.file-upload img{
+    height: 40px;
+}
+
+.file-upload{
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.post-img{
+    height: 220px;
+    margin-bottom: 18px;
+}
+
 @keyframes underline {
     0%{
         border-bottom: 5px solid purple;

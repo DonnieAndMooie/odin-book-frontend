@@ -42,7 +42,11 @@ export default function Post({ post }) {
 
   function showComments(e) {
     let comments;
-    if (e.target.nodeName === "DIV") {
+    if (post.picture && e.target.nodeName === "DIV") {
+      comments = e.target.parentNode.parentNode.childNodes[4];
+    } else if (post.picture) {
+      comments = e.target.parentNode.parentNode.parentNode.childNodes[4];
+    } else if (e.target.nodeName === "DIV") {
       comments = e.target.parentNode.parentNode.childNodes[3];
     } else {
       comments = e.target.parentNode.parentNode.parentNode.childNodes[3];
@@ -99,6 +103,7 @@ export default function Post({ post }) {
         <p>{`${formatDistanceToNow(new Date(post.timestamp))} ago`}</p>
       </div>
       <p className="content">{post.text}</p>
+      {post.picture && <img className="post-img" src={post.picture} />}
       <div className="post-footer">
         <div className="footer-item" onClick={likePost}>
           <p className="likes-count">{likes}</p>
