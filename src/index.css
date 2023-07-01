@@ -371,7 +371,7 @@ img::selection,
     height: fit-content;
     padding: 20px;
     margin-top: 18px;
-    width: 500px;
+    max-width: 500px;
     border: 3px solid black;
 }
 
@@ -474,6 +474,7 @@ img::selection,
 
 .notification img{
     height: 64px;
+    width: 64px;
     border-radius: 32px;
     margin-right: 18px;
     cursor: pointer;
@@ -548,6 +549,7 @@ img::selection,
 .friend img{
     height: 64px;
     border-radius: 24px;
+    width: 64px;
     
 }
 
@@ -592,6 +594,7 @@ img::selection,
 
 .comment-header img{
     height: 48px;
+    width: 48px;
     border-radius: 24px;
 }
 
@@ -723,4 +726,120 @@ img::selection,
     h1{
         font-size: 64px;
     }
+
+    .user-page .friends h3{
+        font-size: 18px;
+    }
+
+    .user-page-bottom{
+        gap: 10px;
+    }
+
+    .login-page,
+    .sign-up-page{
+        width: 100vw;
+        padding: 48px;
+    }
+
+}
+
+@media (max-width: 800px){
+    .user-page-bottom{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .user-page-header img{
+        max-width: 280px;
+    }
+
+    .user-page-header button{
+        width: 180px;
+    }
+
+    .user-page-header h2{
+        font-size: 32px;
+    }
+
+    .notifications-page{
+        padding: 12px;
+        width: 90vw;
+    }
+
+}
+
+@media (max-width: 500px) {
+    .login-page,
+    .sign-up-page{
+        margin-top: 50%;
+        padding: 18px;
+    }
+
+    .dashboard{
+        width: 100vw;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .posts{
+        margin-top: 18px;
+        margin-bottom: 18px;
+    }
+
+    .posts h2{
+        font-size: 24px;
+    }
+
+    .post-header img{
+        width: 32px;
+        height: 32px;
+    }
+
+    .post-footer{
+        width: 100%;
+    }
+
+    .footer-item{
+        font-size: 12px;
+        padding: 4px;
+    }
+
+    .footer-item img{
+        height: 18px;
+    }
+
+    .comments h3{
+        font-size: 18px;
+    }
+
+    .post-img{
+        max-width: 100%;
+    }
+
+    header{
+        width: 100vw;
+    }
+    .user-item{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .user-page{
+        width: 100vw;
+        margin: 0;
+    }
+
+    .user-page-header{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .user-page .posts{
+        padding: 0 5px;
+    }
+
+
 }
