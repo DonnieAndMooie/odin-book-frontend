@@ -15,6 +15,7 @@ export default function UserPage({ user }) {
   useEffect(() => {
     const { token } = JSON.parse(localStorage.getItem("token"));
     async function fetchPosts() {
+      // Fetch all posts
       const response = await fetch("https://purple-surf-7233.fly.dev/posts", {
         method: "GET",
         headers: {
@@ -23,6 +24,7 @@ export default function UserPage({ user }) {
         },
       });
       const data = await response.json();
+      // Filter to only posts from user
       const filteredPosts = data.filter((post) => (
         post.author._id === user._id
       ));
@@ -33,6 +35,7 @@ export default function UserPage({ user }) {
   }, [user]);
 
   function toggleTextarea() {
+    // Display/hide edit bio textarea
     const textarea = document.getElementById("bio");
     const confirmBtn = document.querySelector(".confirm-edit-bio");
     textarea.classList.toggle("hide");
@@ -40,6 +43,7 @@ export default function UserPage({ user }) {
   }
 
   async function submitBio() {
+    // Save new bio to DB
     const bio = document.getElementById("bio").value;
     const { token } = JSON.parse(localStorage.getItem("token"));
     const response = await await fetch(`https://purple-surf-7233.fly.dev/users/${user._id}`, {
@@ -58,6 +62,7 @@ export default function UserPage({ user }) {
   }
 
   if (posts === null) {
+    // If posts not fetched, return loading
     return (
       <div className="loading-div">
         <Header />
@@ -68,11 +73,13 @@ export default function UserPage({ user }) {
   }
 
   function changeHandler(e) {
+    // When image uploaded, store in state
     setImage(e.target.files[0]);
     setPictureAddress(e.target.value);
   }
 
   async function uploadImage() {
+    // Save image to cloudinary
     try {
       const data = new FormData();
       data.append("file", image);
@@ -93,6 +100,7 @@ export default function UserPage({ user }) {
   }
 
   async function profilePicChange() {
+    // Upload image and store returned url in DB
     const url = await uploadImage();
     const userID = JSON.parse(localStorage.getItem("token")).user._id;
     const { token } = JSON.parse(localStorage.getItem("token"));

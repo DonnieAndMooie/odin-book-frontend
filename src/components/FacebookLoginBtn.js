@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import FacebookLogin from "react-facebook-login";
-import { Card, Image } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Card } from "react-bootstrap";
 
 function FacebookLoginBtn({ setLoggedIn }) {
+  // Once logged in with Facebook, OdinBook user is returned
   const responseFacebook = async (response) => {
     if (response.accessToken) {
       const user = await fetch("https://purple-surf-7233.fly.dev/facebook-login", {

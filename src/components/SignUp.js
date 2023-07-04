@@ -1,4 +1,3 @@
-import { type } from "@testing-library/user-event/dist/type";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -6,18 +5,21 @@ export default function SignUp() {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
   async function submitHandler(e) {
+    // Validate signup
     e.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirm-password").value;
     const name = document.getElementById("name").value;
 
+    // Check passwords match
     if (password !== confirmPassword) {
       const error = document.querySelector(".error");
       error.classList.remove("hide");
       return;
     }
 
+    // Create new account
     const response = await fetch("https://purple-surf-7233.fly.dev/sign-up", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -28,9 +30,12 @@ export default function SignUp() {
       }),
     });
     const data = await response.json();
+
+    // If errors are returned, display errors
     if (Array.isArray(data)) {
       setErrors(data);
     } else {
+      // Log user in
       navigate("/login");
     }
   }

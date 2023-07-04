@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import Post from "./Post";
 import Loading from "../images/Spinner-1s-200px.gif";
 
 export default function Feed({ posts, otherPosts }) {
+  // If no posts fetched, return loading
   if (otherPosts.length === 0) {
     return (
       <img src={Loading} alt="Loading" className="loading" />
     );
   }
+
+  // First display posts from friends, then others
   return (
     <div className="posts">
       <h2>Posts From Friends</h2>

@@ -15,6 +15,7 @@ export default function Post({ post }) {
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
+    // Check if post is previously liked
     if (localStorage.getItem("token")) {
       if (post.likes.includes(JSON.parse(localStorage.getItem("token")).user._id.toString())) {
         setIsLiked(true);
@@ -25,6 +26,7 @@ export default function Post({ post }) {
   }, []);
 
   useEffect(() => {
+    // Fetch all comments on post
     async function fetchComments() {
       const { token } = JSON.parse(localStorage.getItem("token"));
       const response = await fetch(`https://purple-surf-7233.fly.dev/posts/${post._id}/comments`, {
@@ -42,6 +44,7 @@ export default function Post({ post }) {
 
   function showComments(e) {
     let comments;
+    //  Whichever element user clicks, will display comments div
     if (post.picture && e.target.nodeName === "DIV") {
       comments = e.target.parentNode.parentNode.childNodes[4];
     } else if (post.picture) {
@@ -60,6 +63,7 @@ export default function Post({ post }) {
     const userID = JSON.parse(localStorage.getItem("token")).user._id;
     const { token } = JSON.parse(localStorage.getItem("token"));
     if (post.likes.includes(userID)) {
+      // If previosuly liked, unlike
       const filteredLikes = post.likes.filter((id) => id !== userID);
       const response = await fetch(`https://purple-surf-7233.fly.dev/posts/${post._id}`, {
         method: "PUT",
@@ -76,6 +80,7 @@ export default function Post({ post }) {
       setLikes(post.likes.length);
       setIsLiked(false);
     } else {
+      // If not liked previously, like the post
       const response = await fetch(`https://purple-surf-7233.fly.dev/posts/${post._id}`, {
         method: "PUT",
         headers: {

@@ -7,6 +7,7 @@ export default function Login() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
+    // If token saved, login automatically
     const token = localStorage.getItem("token");
     if (token) {
       navigate("/dashboard");
@@ -14,6 +15,7 @@ export default function Login() {
   }, [loggedIn]);
 
   async function submitHandler(e) {
+    // Login with email and password
     e.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -36,6 +38,7 @@ export default function Login() {
   }
 
   async function guestLogin() {
+    // Log in with guest account details
     document.getElementById("email").value = "guest@email.com";
     document.getElementById("password").value = "guestPassword";
     const loginBtn = document.querySelector(".login-btn");

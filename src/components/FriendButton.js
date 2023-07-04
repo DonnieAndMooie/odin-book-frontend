@@ -62,6 +62,7 @@ export default function FriendButton({ user }) {
   }
 
   let button;
+  // Return button based on whether user is friends, or has sent/received request
   if (currentUserFriends.includes(user._id)) {
     button = <button className="friends" onClick={(e) => unfriend(e, user)}>Friends</button>;
   } else if (requestsReceived.includes(user._id)) {

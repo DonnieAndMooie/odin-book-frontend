@@ -5,6 +5,7 @@ export default function Notification({ userID }) {
   const [user, setUser] = useState();
   const navigate = useNavigate();
   useEffect(() => {
+    // Fetch all users
     async function fetchUsers() {
       const { token } = JSON.parse(localStorage.getItem("token"));
       const response = await fetch(`https://purple-surf-7233.fly.dev/users/${userID}`, {

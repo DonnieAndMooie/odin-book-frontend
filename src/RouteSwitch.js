@@ -14,6 +14,7 @@ export default function RouteSwitch() {
   const [allUsers, setAllUsers] = useState([]);
   useEffect(() => {
     if (localStorage.getItem("token")) {
+      // Check if token is expired (over 24 hours old)
       const { timestamp } = JSON.parse(localStorage.getItem("token"));
       const currentTime = moment(new Date());
       const difference = currentTime.diff(timestamp, "hours");

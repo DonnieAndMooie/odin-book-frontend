@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import Upload from "../images/upload.png";
 
 export default function PostForm({ setPosts, posts }) {
-  const [pictureAddress, setPictureAddress] = useState("No file uploaded");
+  const [pictureAddress, setPictureAddress] = useState("No file uploaded"); // This will be displayed on input;
   const [image, setImage] = useState(null);
   async function uploadImage() {
+    // Upload file to cloudinary
     try {
       const data = new FormData();
       data.append("file", image);
@@ -28,9 +29,11 @@ export default function PostForm({ setPosts, posts }) {
     let url;
     e.preventDefault();
     if (image) {
+      // If image uploaded, save to cloudinary and get URL
       url = await uploadImage();
     }
 
+    // Save post
     const text = document.querySelector("input").value;
     const { token } = JSON.parse(localStorage.getItem("token"));
     const response = await fetch("https://purple-surf-7233.fly.dev/posts", {
@@ -52,11 +55,13 @@ export default function PostForm({ setPosts, posts }) {
   }
 
   function changeHandler(e) {
+    // When image uploaded, store in state
     setImage(e.target.files[0]);
     setPictureAddress(e.target.value);
   }
 
   let profilePic;
+  // Get proifle pic from localStorage
   if (localStorage.getItem("token")) {
     profilePic = JSON.parse(localStorage.getItem("token")).user.picture;
   }

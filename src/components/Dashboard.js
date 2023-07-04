@@ -9,6 +9,7 @@ export default function Dashboard({ setAllUsers }) {
   const [posts, setPosts] = useState([]);
   const [otherPosts, setOtherPosts] = useState([]);
   useEffect(() => {
+    // Fetch posts from friends first
     async function fetchPosts() {
       const { token } = JSON.parse(localStorage.getItem("token"));
       const response = await fetch("https://purple-surf-7233.fly.dev/timeline", {
@@ -21,12 +22,14 @@ export default function Dashboard({ setAllUsers }) {
       const data = await response.json();
       setPosts(data);
     }
+    // Only run if logged in
     if (localStorage.getItem("token")) {
       fetchPosts();
     }
   }, []);
 
   useEffect(() => {
+    // Fetch posts not from friends
     async function fetchOtherPosts() {
       const { token } = JSON.parse(localStorage.getItem("token"));
       const response = await fetch("https://purple-surf-7233.fly.dev/other-posts", {
@@ -46,6 +49,7 @@ export default function Dashboard({ setAllUsers }) {
 
   useEffect(() => {
     async function fetchUsers() {
+      // Fetch all users
       const { token } = JSON.parse(localStorage.getItem("token"));
       const response = await fetch("https://purple-surf-7233.fly.dev/users", {
         method: "GET",
@@ -63,6 +67,7 @@ export default function Dashboard({ setAllUsers }) {
   }, []);
 
   useEffect(() => {
+    // Redirect to login if not logged in
     const token = localStorage.getItem("token");
     if (!token) {
       return navigate("/login");

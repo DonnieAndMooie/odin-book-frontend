@@ -2,6 +2,7 @@ import React from "react";
 
 export default function CommentForm({ postId, setComments, comments }) {
   async function submitComment() {
+    // Save comment to DB
     const text = document.getElementById(`comment-${postId}`).value;
     const { token } = JSON.parse(localStorage.getItem("token"));
     const response = await fetch(`https://purple-surf-7233.fly.dev/posts/${postId}/comments`, {

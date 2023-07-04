@@ -5,6 +5,7 @@ import Notification from "../images/notifications.png";
 export default function Header() {
   const navigate = useNavigate();
   useEffect(() => {
+    // On hover display options
     const options = document.querySelectorAll(".option");
     const user = document.querySelector(".user");
     user.addEventListener("mouseover", () => {
@@ -20,12 +21,14 @@ export default function Header() {
   }, []);
 
   function logout() {
+    // Remove token from localstorage
     localStorage.clear();
     navigate("/login");
   }
 
   let profilePic;
   let userId;
+  // Retrieve user info from localStorage
   if (localStorage.getItem("token")) {
     profilePic = JSON.parse(localStorage.getItem("token")).user.picture;
     userId = JSON.parse(localStorage.getItem("token")).user._id;

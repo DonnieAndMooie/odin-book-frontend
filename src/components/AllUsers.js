@@ -7,6 +7,7 @@ export default function AllUsers() {
   const [users, setUsers] = useState(null);
   useEffect(() => {
     async function fetchUsers() {
+      // Fetch all users from DB
       const currentUserID = JSON.parse(localStorage.getItem("token")).user._id;
       const { token } = JSON.parse(localStorage.getItem("token"));
       const response = await fetch("https://purple-surf-7233.fly.dev/users", {
@@ -17,6 +18,7 @@ export default function AllUsers() {
         },
       });
       const data = await response.json();
+      // Remove current user
       const filteredData = data.filter((user) => user._id !== currentUserID);
       setUsers(filteredData);
     }
@@ -25,6 +27,7 @@ export default function AllUsers() {
     }
   }, []);
 
+  // Return loading when awaiting fetch
   if (users === null) {
     return (
       <div className="loading-div">
@@ -34,6 +37,8 @@ export default function AllUsers() {
 
     );
   }
+
+  // Return all users
   return (
     <div>
       <Header />

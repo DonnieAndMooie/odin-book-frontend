@@ -10,6 +10,7 @@ export default function Comment({ comment }) {
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState(comment.likes.length);
 
+  // Check if post has previously been liked
   useEffect(() => {
     if (localStorage.getItem("token")) {
       if (comment.likes.includes(JSON.parse(localStorage.getItem("token")).user._id.toString())) {
@@ -23,6 +24,8 @@ export default function Comment({ comment }) {
   async function likeComment() {
     const userID = JSON.parse(localStorage.getItem("token")).user._id;
     const { token } = JSON.parse(localStorage.getItem("token"));
+
+    // If previously liked, unlike the comment
     if (comment.likes.includes(userID)) {
       const filteredLikes = comment.likes.filter((id) => id !== userID);
       const response = await fetch(`https://purple-surf-7233.fly.dev/posts/${comment.post}/comments/${comment._id}`, {
@@ -40,6 +43,7 @@ export default function Comment({ comment }) {
       setLikes(comment.likes.length);
       setIsLiked(false);
     } else {
+      // Like the comment
       const response = await fetch(`https://purple-surf-7233.fly.dev/posts/${comment.post}/comments/${comment._id}`, {
         method: "PUT",
         headers: {

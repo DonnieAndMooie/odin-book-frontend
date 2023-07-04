@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 export default function Friend({ friendID }) {
   const [friend, setFriend] = useState();
   const navigate = useNavigate();
+
+  // Fetch user data
   useEffect(() => {
     async function fetchUser() {
       const { token } = JSON.parse(localStorage.getItem("token"));
