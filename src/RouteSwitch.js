@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  BrowserRouter, Routes, Route, Navigate,
+  HashRouter, Routes, Route, Navigate,
 } from "react-router-dom";
 import moment from "moment";
 import Login from "./components/Login";
@@ -24,7 +24,7 @@ export default function RouteSwitch() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard setAllUsers={setAllUsers} />} />
@@ -37,6 +37,6 @@ export default function RouteSwitch() {
         <Route path="/notifications" element={<NotificationPage />} />
         <Route path="*" element={<Login />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
